@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { createPortal } from 'react-dom'
+import ModalContent from "./ModalContent"
 
 
 export default function ListCard({country}) {
 
-    const [showModal, setShowModal] = useState()
+    const [showModal, setShowModal] = useState(false)
 
   return (
     <>
@@ -16,7 +17,7 @@ export default function ListCard({country}) {
                 <img className='w-full h-full object-cover rounded' src={country.flags.svg} alt="" />
             </h2>
         </li>
-        {showModal && createPortal(<ModalContent/>, document.body)}
+        {showModal && createPortal(<ModalContent country={country} closeModal={() => setShowModal(!showModal)}/>, document.body)}
     </>
 
   )
